@@ -9,9 +9,7 @@ const registerUser = async (req, res) => {
     const exists = await User.findOne({ username });
 
     if (exists) {
-      return res
-        .status(409)
-        .json({ error: "Username already in use :confused:." });
+      return res.status(409).json({ error: "Username already in use." });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -32,16 +30,12 @@ const loginUser = async (req, res) => {
     const user = await User.findOne({ username });
 
     if (!user) {
-      return res
-        .status(401)
-        .json({ error: "Invalid username or password :cry:" });
+      return res.status(401).json({ error: "Invalid username or password." });
     }
 
     const isPasswordMatched = await bcrypt.compare(password, user.password);
     if (!isPasswordMatched) {
-      return res
-        .status(401)
-        .json({ error: "Invalid username or password :cry:" });
+      return res.status(401).json({ error: "Invalid username or password." });
     }
 
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
