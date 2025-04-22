@@ -7,7 +7,7 @@ import Posts from "./pages/Posts";
 import CreatePost from "./pages/CreatePost";
 import NotFound from "./pages/NotFound";
 import PostDetails from "./pages/PostDetails";
-import MyPosts from "./pages/myPosts";
+import MyPosts from "./pages/MyPosts";
 
 import Container from "react-bootstrap/esm/Container";
 
