@@ -8,7 +8,7 @@ import Card from "react-bootstrap/Card";
 
 import { isTokenValid } from "../utils/auth";
 
-export default function Posts() {
+export default function MyPosts() {
   const [posts, setPosts] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
@@ -29,11 +29,14 @@ export default function Posts() {
           return;
         }
 
-        const response = await fetch("http://localhost:3000/api/posts", {
-          headers: {
-            Authorization: `Bearer ${storedToken}`,
-          },
-        });
+        const response = await fetch(
+          "http://localhost:3000/api/posts/user/me",
+          {
+            headers: {
+              Authorization: `Bearer ${storedToken}`,
+            },
+          }
+        );
 
         if (!response.ok) {
           const data = await response.json();
